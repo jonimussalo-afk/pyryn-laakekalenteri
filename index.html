@@ -83,6 +83,10 @@
   }
   h1 .pieni { display: block; font-size: .58em; color: #8A5A3C; margin-left: .1em; }
   .alaotsikko {
+    display: inline-block;
+    padding: .35rem .7rem .4rem;
+    background: rgba(255, 249, 238, .82);
+    border-radius: 12px 16px 12px 14px;
     margin: .8rem 0 0 .2rem;
     font-size: clamp(.85rem, 1.6vw, 1rem);
     color: var(--muste-2);
@@ -198,6 +202,8 @@
   .paiva h2 .lyhyt { display: none; }
   .tanaan-merkki {
     display: none;
+    position: absolute;
+    top: -.8rem; left: .7rem;
     font-size: .68rem;
     font-weight: 700;
     padding: .1rem .45rem .15rem;
@@ -221,11 +227,11 @@
     margin: 0 0 .3rem .1rem;
   }
   .aika-nimi svg { width: 1.05rem; height: 1.05rem; flex: none; }
-  .paikat { display: flex; flex-wrap: wrap; gap: .3rem; }
+  .paikat { display: flex; flex-wrap: wrap; gap: .25rem; }
   .paikka {
     position: relative;
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.5rem;
+    height: 2.5rem;
     padding: .2rem;
     border: 2px dashed rgba(74, 53, 40, .38);
     border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
@@ -235,7 +241,7 @@
     transition: transform .15s, background-color .15s, border-color .15s;
     -webkit-tap-highlight-color: transparent;
   }
-  .paikka > svg { width: 100%; height: 100%; display: block; opacity: .3; filter: grayscale(.45); transition: opacity .2s, filter .2s; }
+  .paikka > svg { width: 100%; height: 100%; display: block; opacity: .4; filter: grayscale(.4); transition: opacity .2s, filter .2s; }
   .paikka:hover { transform: translateY(-2px); background: rgba(255, 252, 244, .9); }
   .paikka:hover > svg { opacity: .55; }
   .paikka:focus-visible { outline: 3px solid #E58A3A; outline-offset: 2px; }
@@ -450,8 +456,10 @@
   }
 
   /* ---------- Kapeammat näytöt ---------- */
-  @media (max-width: 1180px) {
-    .kalenteri { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  @media (max-width: 1280px) {
+    .kalenteri { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 1.2rem; }
+    .paikka { width: 2.75rem; height: 2.75rem; }
+    .paikat { gap: .3rem; }
   }
   @media (max-width: 900px) {
     .hylly-sisa { grid-template-columns: 1fr auto; }
@@ -462,6 +470,7 @@
     .kalenteri { grid-template-columns: 1fr; gap: .6rem; }
     .paiva { display: grid; grid-template-columns: 5.6rem repeat(3, auto); align-items: start; column-gap: .6rem; padding: .6rem .7rem .7rem; }
     .paiva-otsikko { flex-direction: column; align-items: flex-start; margin: .15rem 0 0; gap: .3rem; }
+    .tanaan-merkki { position: static; }
     .aika + .aika { margin: 0; padding: 0 0 0 .6rem; border-top: 0; border-left: 2px dashed rgba(74, 53, 40, .22); }
     .paikat { flex-wrap: nowrap; }
     .paikka { width: 2.6rem; height: 2.6rem; }
