@@ -168,12 +168,19 @@
   }
   .kalenteri {
     display: grid;
-    grid-template-columns: repeat(7, minmax(0, 1fr));
-    gap: clamp(.5rem, 1vw, .9rem);
+    grid-template-columns: 1fr;
+    gap: .85rem;
+    max-width: 52rem;
+    margin: 0 auto;
   }
   .paiva {
     position: relative;
-    padding: .75rem .6rem .9rem;
+    display: grid;
+    grid-template-columns: 9.5rem auto auto auto;
+    justify-content: space-between;
+    align-items: start;
+    column-gap: 1rem;
+    padding: .8rem 1.2rem .9rem;
     background:
       radial-gradient(ellipse 70% 45% at 30% 12%, rgba(255, 255, 255, .55), transparent 70%),
       radial-gradient(ellipse 80% 50% at 80% 95%, color-mix(in srgb, var(--savy) 70%, #8a6a40 6%), transparent 75%),
@@ -186,24 +193,22 @@
   .paiva:nth-child(even) { border-radius: 16px 22px 15px 20px / 22px 15px 20px 16px; }
   .paiva-otsikko {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: .3rem;
-    margin: 0 .15rem .55rem;
-    min-height: 1.6rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .35rem;
+    margin: .25rem 0 0;
   }
+  .ajat { display: contents; }
   .paiva h2 {
     margin: 0;
     font-family: var(--otsikko);
     font-weight: 500;
-    font-size: clamp(.95rem, 1.35vw, 1.15rem);
+    font-size: clamp(1.05rem, 2.2vw, 1.3rem);
     letter-spacing: .01em;
   }
   .paiva h2 .lyhyt { display: none; }
   .tanaan-merkki {
     display: none;
-    position: absolute;
-    top: -.8rem; left: .7rem;
     font-size: .68rem;
     font-weight: 700;
     padding: .1rem .45rem .15rem;
@@ -216,7 +221,7 @@
   .paiva.tanaan { box-shadow: 0 0 0 4px #FFE29A, 3px 6px 0 4px rgba(74, 53, 40, .16); }
   .paiva.tanaan .tanaan-merkki { display: inline-block; }
 
-  .aika + .aika { margin-top: .5rem; padding-top: .45rem; border-top: 2px dashed rgba(74, 53, 40, .22); }
+  .aika + .aika { padding-left: 1rem; border-left: 2px dashed rgba(74, 53, 40, .22); }
   .aika-nimi {
     display: flex;
     align-items: center;
@@ -227,11 +232,11 @@
     margin: 0 0 .3rem .1rem;
   }
   .aika-nimi svg { width: 1.05rem; height: 1.05rem; flex: none; }
-  .paikat { display: flex; flex-wrap: wrap; gap: .25rem; }
+  .paikat { display: flex; gap: .3rem; }
   .paikka {
     position: relative;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
     padding: .2rem;
     border: 2px dashed rgba(74, 53, 40, .38);
     border-radius: 48% 52% 50% 50% / 52% 48% 52% 48%;
@@ -456,42 +461,34 @@
   }
 
   /* ---------- Kapeammat näytöt ---------- */
-  @media (max-width: 1280px) {
-    .kalenteri { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: 1.2rem; }
-    .paikka { width: 2.75rem; height: 2.75rem; }
-    .paikat { gap: .3rem; }
-  }
   @media (max-width: 900px) {
     .hylly-sisa { grid-template-columns: 1fr auto; }
     .laakkeet { grid-column: 1 / -1; }
     .ohje { display: none; }
   }
   @media (max-width: 700px) {
-    .kalenteri { grid-template-columns: 1fr; gap: .6rem; }
-    .paiva { display: grid; grid-template-columns: 5.6rem repeat(3, auto); align-items: start; column-gap: .6rem; padding: .6rem .7rem .7rem; }
-    .paiva-otsikko { flex-direction: column; align-items: flex-start; margin: .15rem 0 0; gap: .3rem; }
-    .tanaan-merkki { position: static; }
-    .aika + .aika { margin: 0; padding: 0 0 0 .6rem; border-top: 0; border-left: 2px dashed rgba(74, 53, 40, .22); }
-    .paikat { flex-wrap: nowrap; }
-    .paikka { width: 2.6rem; height: 2.6rem; }
+    .kalenteri { gap: .6rem; }
+    .paiva { grid-template-columns: 6.2rem auto auto auto; column-gap: .55rem; padding: .65rem .75rem .75rem; }
+    .aika + .aika { padding-left: .55rem; }
+    .paikka { width: 2.5rem; height: 2.5rem; }
+    .paikat { gap: .22rem; }
     .laakkeet { gap: .4rem; }
-    .laake { grid-template-columns: 2.1rem auto; padding: .3rem .5rem .3rem .3rem; column-gap: .3rem; flex: 1; }
-    .laake svg { width: 2.1rem; height: 2.1rem; }
-    .laake b { font-size: .85rem; }
-    .laake small { font-size: .62rem; }
+    .laake { flex: 1; grid-template-columns: 2rem auto; padding: .3rem .45rem .3rem .3rem; column-gap: .3rem; }
+    .laake svg { width: 2rem; height: 2rem; }
+    .laake b { font-size: .8rem; }
+    .laake small { font-size: .6rem; }
     .alaotsikko { display: none; }
     .puhe { right: 38%; bottom: 82%; max-width: 13.5rem; }
   }
-  @media (max-width: 700px) and (min-width: 481px) {
-    .ajat { display: contents; }
-  }
-  @media (max-width: 480px) {
-    .paiva { grid-template-columns: 1fr; }
-    .paiva-otsikko { flex-direction: row; align-items: baseline; margin-bottom: .4rem; }
-    .paiva .ajat { display: flex; gap: .5rem; }
+  @media (max-width: 560px) {
+    .paiva { grid-template-columns: auto auto auto; }
+    .paiva-otsikko { grid-column: 1 / -1; flex-direction: row; align-items: baseline; margin: 0 0 .45rem; }
+    .paikka { width: 2.3rem; height: 2.3rem; padding: .15rem; }
+    .paikat { gap: .2rem; }
+    .laake { grid-template-columns: 1fr; justify-items: center; text-align: center; padding: .3rem .2rem .35rem; }
+    .laake svg { grid-row: auto; width: 1.9rem; height: 1.9rem; }
+    .laake b { font-size: .7rem; white-space: nowrap; }
     .laake small { display: none; }
-    .laake { grid-template-columns: 2rem auto; }
-    .laake svg { grid-row: auto; }
   }
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
@@ -530,7 +527,7 @@
 </svg>
   <div class="kansi-sisa">
     <h1><span class="pieni">Pyryn</span>lääkekalenteri</h1>
-    <p class="alaotsikko">Omega3, Rimadyl ja Neurontin viikon jokaiselle päivälle. Kun viikko on täynnä, Pyry kiittää.</p>
+    <p class="alaotsikko">Omega3, Rimadyl, Arthryl ja Neurontin viikon jokaiselle päivälle. Kun viikko on täynnä, Pyry kiittää.</p>
   </div>
   <div class="pyry" id="pyry">
     <div class="puhe" id="puhe" aria-live="polite"></div>
@@ -658,16 +655,29 @@
           <circle cx="40" cy="30" r="3.2"/><circle cx="40" cy="36" r="3.2"/>
         </g>
         <path d="M17 26 C19 20 24 16 30 15" stroke="#F7DEC4" stroke-width="3.2" stroke-linecap="round" fill="none"/>` },
-    neurontin: {
-      nimi: "Neurontin",
+    arthryl: {
+      nimi: "Arthryl",
       svg: `
-        <g transform="rotate(-35 32 32)" stroke="${M}" stroke-width="2.6" stroke-linejoin="round">
-          <path d="M13 32 a10.5 10.5 0 0 1 10.5 -10.5 H32 V42.5 H23.5 a10.5 10.5 0 0 1 -10.5 -10.5 Z" fill="#FFF3D6"/>
-          <path d="M32 21.5 H40.5 a10.5 10.5 0 0 1 0 21 H32 Z" fill="#F2C94C"/>
+        <rect x="11" y="13" width="42" height="40" rx="13" fill="#9FCB86" stroke="${M}" stroke-width="2.6" transform="rotate(10 32 33)"/>
+        <rect x="17" y="19" width="30" height="28" rx="9" fill="#B6D9A0" transform="rotate(10 32 33)"/>
+        <g fill="#6E9F5A">
+          <ellipse cx="32" cy="37" rx="6" ry="5"/>
+          <ellipse cx="24.5" cy="30.5" rx="2.4" ry="3"/><ellipse cx="29.5" cy="26" rx="2.4" ry="3.1"/>
+          <ellipse cx="35.5" cy="26" rx="2.4" ry="3.1"/><ellipse cx="40.5" cy="30.5" rx="2.4" ry="3"/>
         </g>
-        <path d="M18 30 C18.5 27 20.5 25 23.5 24.5" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" fill="none" transform="rotate(-35 32 32)"/>` },
+        <path d="M16 22 C18 18 22 15.5 27 15" stroke="#E2F1D6" stroke-width="3" stroke-linecap="round" fill="none"/>` },
+    neurontin: {
+      nimi: "Neurontin ½",
+      svg: `
+        <g transform="rotate(-28 30 32)">
+          <path d="M32 20 a18 12 0 0 1 0 24" fill="none" stroke="${M}" stroke-width="2" stroke-dasharray="3 3.5" opacity=".35"/>
+          <path d="M32 20 a18 12 0 0 0 0 24 Z" fill="#FFFDF4" stroke="${M}" stroke-width="2.6" stroke-linejoin="round"/>
+          <path d="M20 27 C22 24 25.5 22.5 29 22.3" stroke="#E9E1CF" stroke-width="2.6" stroke-linecap="round" fill="none"/>
+        </g>
+        <circle cx="47" cy="45" r="10" fill="#F2C94C" stroke="${M}" stroke-width="2.2"/>
+        <path d="M43.2 41.5 L45 40.3 V45.5 M41.5 50.5 L52 39.5 M48.4 45.8 C48.4 44.6 51.8 44.4 51.8 46.2 C51.8 47.6 48.4 48.8 48.2 50.6 H52" fill="none" stroke="${M}" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>` },
   };
-  const HYLLY = ["omega", "rimadyl", "neurontin"];
+  const HYLLY = ["omega", "rimadyl", "arthryl", "neurontin"];
 
   const IKONIT = {
     aamu: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 17 a7 7 0 0 1 14 0 Z" fill="#FFC85C" stroke="${M}" stroke-width="1.8" stroke-linejoin="round"/><path d="M3 17.5 H21 M12 6 V8 M5.5 9 L6.8 10.3 M18.5 9 L17.2 10.3" stroke="${M}" stroke-width="1.8" stroke-linecap="round"/></svg>`,
@@ -675,9 +685,9 @@
     ilta: `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 3.5 A8.5 8.5 0 1 0 20.5 15 A7 7 0 0 1 15.5 3.5 Z" fill="#B9B3E3" stroke="${M}" stroke-width="1.8" stroke-linejoin="round"/><circle cx="18.5" cy="6" r="1.1" fill="${M}"/></svg>`,
   };
   const AJAT = [
-    { a: "aamu", nimi: "Aamu", adverbi: "aamulla", laakkeet: ["omega", "neurontin", "rimadyl"] },
-    { a: "paiva", nimi: "Päivä", adverbi: "päivällä", laakkeet: ["rimadyl"] },
-    { a: "ilta", nimi: "Ilta", adverbi: "illalla", laakkeet: ["omega", "rimadyl"] },
+    { a: "aamu", nimi: "Aamu", adverbi: "aamulla", laakkeet: ["omega", "rimadyl", "arthryl", "neurontin"] },
+    { a: "paiva", nimi: "Päivä", adverbi: "päivällä", laakkeet: ["neurontin"] },
+    { a: "ilta", nimi: "Ilta", adverbi: "illalla", laakkeet: ["omega", "neurontin"] },
   ];
   const PAIVAT = ["Maanantai", "Tiistai", "Keskiviikko", "Torstai", "Perjantai", "Lauantai", "Sunnuntai"];
   const GENETIIVIT = ["Maanantain", "Tiistain", "Keskiviikon", "Torstain", "Perjantain", "Lauantain", "Sunnuntain"];
@@ -687,7 +697,7 @@
   const KAIKKI = [];
   PAIVAT.forEach((_, p) => AJAT.forEach((aj) => aj.laakkeet.forEach((l) =>
     KAIKKI.push({ id: `${p}-${aj.a}-${l}`, p, a: aj.a, l }))));
-  const YHTEENSA = KAIKKI.length; // 42
+  const YHTEENSA = KAIKKI.length; // 49
   const SALLITUT = new Set(KAIKKI.map((x) => x.id));
   const AIKA = Object.fromEntries(AJAT.map((aj) => [aj.a, aj]));
   const osat = (id) => { const [p, a, l] = id.split("-"); return { p: Number(p), a, l }; };
@@ -914,7 +924,7 @@
       return vapaa(id) ? { id } : { virhe: `${nimi} on jo merkitty: ${PAIVAT[p].toLowerCase()} ${aj.adverbi}`, kortti };
     }
     const id = AJAT.filter((aj) => aj.laakkeet.includes(l)).map((aj) => `${p}-${aj.a}-${l}`).find(vapaa);
-    return id ? { id } : { virhe: `${GENETIIVIT[p]} ${nimi}-annokset on jo merkitty`, kortti };
+    return id ? { id } : { virhe: `${GENETIIVIT[p]} ${nimi} on jo merkitty kaikkiin kohtiin`, kortti };
   };
   const torju = (tulos) => {
     tulos.kortti.classList.remove("estetty");

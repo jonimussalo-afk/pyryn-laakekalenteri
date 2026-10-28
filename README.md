@@ -5,15 +5,16 @@ Yhteinen viikkokalenteri Pyry-koiran lääkkeille. Sivu toimii GitHub Pagesissa,
 | Lääke | Aamu | Päivä | Ilta |
 |---|---|---|---|
 | Omega3 | ✓ | | ✓ |
-| Rimadyl | ✓ | ✓ | ✓ |
-| Neurontin | ✓ | | |
+| Rimadyl | ✓ | | |
+| Arthryl | ✓ | | |
+| Neurontin (puolikas) | ✓ | ✓ | ✓ |
 
 ## Käyttö
 
 - Napauta haaleaa lääkettä, kun olet antanut sen. Merkintä näkyy heti myös toisella puhelimella.
 - Lääkkeen voi myös raahata alareunan hyllystä päivän kohdalle.
 - Napauta merkittyä lääkettä, jos haluat perua merkinnän. Alareunan Kumoa-painike palauttaa sen.
-- Kun kaikki viikon 42 annosta on merkitty, Pyry kiittää ja kalenteri tyhjenee uutta viikkoa varten.
+- Kun kaikki viikon 49 annosta on merkitty, Pyry kiittää ja kalenteri tyhjenee uutta viikkoa varten.
 
 ## Tietokanta
 
@@ -25,7 +26,7 @@ Kalenteri käyttää Liekkiboardin Firebase-projektia polussa `pyry/annokset`. S
   "annokset": {
     ".write": true,
     "$id": {
-      ".validate": "$id.matches(/^[0-6]-(aamu-(omega|rimadyl|neurontin)|paiva-rimadyl|ilta-(omega|rimadyl))$/) && newData.hasChildren(['p', 'a', 'l', 't']) && newData.child('p').val() + '-' + newData.child('a').val() + '-' + newData.child('l').val() === $id",
+      ".validate": "$id.matches(/^[0-6]-(aamu-(omega|rimadyl|arthryl|neurontin)|paiva-neurontin|ilta-(omega|neurontin))$/) && newData.hasChildren(['p', 'a', 'l', 't']) && newData.child('p').val() + '-' + newData.child('a').val() + '-' + newData.child('l').val() === $id",
       "p": { ".validate": "newData.isString()" },
       "a": { ".validate": "newData.isString()" },
       "l": { ".validate": "newData.isString()" },
