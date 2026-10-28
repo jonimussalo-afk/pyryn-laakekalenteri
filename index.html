@@ -355,13 +355,6 @@
   .yhteys::before { content: ""; width: .6rem; height: .6rem; border-radius: 50%; background: #C9B9A4; border: 1.5px solid var(--muste); }
   .yhteys[data-laji="ok"]::before { background: #6FBF5A; }
   .yhteys[data-laji="virhe"]::before { background: #E27D5F; }
-  .alusta {
-    background: none; border: 0; padding: .1rem 0;
-    font-size: .74rem; color: var(--muste-2);
-    text-decoration: underline dotted; text-underline-offset: 3px;
-    cursor: pointer;
-  }
-  .alusta:hover { color: var(--muste); }
 
   /* ---------- Raahattava ---------- */
   .haamu {
@@ -599,7 +592,6 @@
     </div>
     <div class="toimet">
       <span class="yhteys" id="yhteys" role="status"></span>
-      <button type="button" class="alusta" id="alusta">Aloita viikko alusta</button>
     </div>
   </div>
 </footer>
@@ -1040,14 +1032,6 @@
     if (juhlaAuki) suljeJuhla();
     else if (veto) peru();
     else if (valittu) valitse(valittu);
-  });
-
-  document.getElementById("alusta").addEventListener("click", () => {
-    if (!varasto || laske() === 0) return;
-    if (confirm("Tyhjennetäänkö koko viikko? Merkinnät poistuvat kaikilta, jotka käyttävät kalenteria.")) {
-      varasto.tyhjenna();
-      naytaViesti("Viikko aloitettu alusta");
-    }
   });
 
   /* Pyryn rapsuttaminen */
